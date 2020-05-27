@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "WinPiStats.Tray": {
+      "commandName": "Project",
+      "remoteDebugEnabled": true,
+      "remoteDebugMachine": "ckdevvm.kapusta.home"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+﻿<Page
+    x:Class="WinPiStats.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinPiStats"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loading="Page_Loading">
+
+
+    <Grid Background="{ThemeResource SystemControlAcrylicElementBrush}">
+        <TextBox x:Name="blockedTextbox" HorizontalAlignment="Left" Margin="141,196,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True"/>
+        <TextBox x:Name="textboxQueriesToday" HorizontalAlignment="Left" Margin="139,256,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True"/>
+        <TextBox x:Name="isEnabledTextBox" HorizontalAlignment="Left" Margin="141,149,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" BorderThickness="0,0,0,0"/>
+        <Button x:Name="toggleStateButton" Content="Button" Margin="142,326,0,0" VerticalAlignment="Top" Click="toggleStateButton_Click"/>
+
+    </Grid>
+</Page>
