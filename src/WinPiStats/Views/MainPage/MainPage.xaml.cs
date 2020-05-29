@@ -19,26 +19,34 @@ using System.Xml;
 using Windows.Storage;
 using System.Net.Http;
 using Windows.Data.Json;
+using Windows.UI.Core;
+using WinPiStats.Views.Settings;
 
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-namespace WinPiStats
+namespace WinPiStats.Views.MainPage
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+    /// 
+    
     public sealed partial class MainPage : Page
     {
         public MainPage()
         {
             this.InitializeComponent();
             PiHoleAPI piholeapi = new PiHoleAPI("192.168.113.10", "8b110955b9df47b0b7c3a623e600f030394e203a0abdde4f0e5a498af953a6f8");
-            blockedTextbox.Text = piholeapi.Query_Pihole_Domains();
-            textboxQueriesToday.Text = piholeapi.Total_Queries_Today();
+            blockedTextBlock.Text = piholeapi.Query_Pihole_Domains();
+            queriesTodayTextBlock.Text = piholeapi.Total_Queries_Today();
             //blockedTextbox.Text = piholeapi
             PiholeStateCheck();
+            
+            
+           
+            
 
               
 
@@ -61,6 +69,7 @@ namespace WinPiStats
         {
             //read settings
            ReadSettings();
+            
         }
 
         private void ReadSettings()
@@ -92,12 +101,12 @@ namespace WinPiStats
 
             if (piholeapi.Is_Pihole_Enabled())
             {
-                isEnabledTextBox.Text = "Enabled";
+                isEnabledTextBlock.Text = "Enabled";
                 toggleStateButton.Content = "Disable";
             }
             else
             {
-                isEnabledTextBox.Text = "Disabled";
+                isEnabledTextBlock.Text = "Disabled";
                 toggleStateButton.Content = "Enable";
             }
 
@@ -115,5 +124,20 @@ namespace WinPiStats
 
             PiholeStateCheck();
         }
+
+        private void mainNav_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
+        {
+
+            if (args.IsSettingsSelected)
+            {
+                settingsFrame.Navigate(typeof(Testpage));
+                //mainNav.IsBackButtonVisible = Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Visible;
+            }
+
+        }
+
+      
+
+
     }
 }
