@@ -21,6 +21,9 @@ using System.Net.Http;
 using Windows.Data.Json;
 using Windows.UI.Core;
 using WinPiStats.Views.Settings;
+using WinPiStats.Controls.Json;
+using WinPiStats.Views.Content;
+
 
 
 
@@ -32,17 +35,18 @@ namespace WinPiStats.Views.MainPage
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     /// 
+
     
+
     public sealed partial class MainPage : Page
     {
+        Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
         public MainPage()
         {
             this.InitializeComponent();
-            PiHoleAPI piholeapi = new PiHoleAPI("192.168.113.10", "8b110955b9df47b0b7c3a623e600f030394e203a0abdde4f0e5a498af953a6f8");
-            blockedTextBlock.Text = piholeapi.Query_Pihole_Domains();
-            queriesTodayTextBlock.Text = piholeapi.Total_Queries_Today();
-            //blockedTextbox.Text = piholeapi
-            PiholeStateCheck();
+            
+            
             
             
            
@@ -55,7 +59,7 @@ namespace WinPiStats.Views.MainPage
             
         }
 
-        public async void Launch_Win32()
+       /* public async void Launch_Win32()
         {
             if (ApiInformation.IsApiContractPresent("Windows.ApplicationModel.FullTrustAppContract", 1, 0))
             {
@@ -63,7 +67,7 @@ namespace WinPiStats.Views.MainPage
             }
 
 
-        }
+        }*/
 
         private void Page_Loading(FrameworkElement sender, object args)
         {
@@ -75,7 +79,16 @@ namespace WinPiStats.Views.MainPage
         private void ReadSettings()
         {
 
-            ApplicationDataContainer settings = ApplicationData.Current.LocalSettings;
+            // if (localSettings.Values["First_Run"] == null || localSettings.Values["First_Run"] == true)
+            //  {
+
+            //First_Run();
+
+           // }
+           // else
+           // {
+
+           // }
 
 
         }
@@ -95,34 +108,14 @@ namespace WinPiStats.Views.MainPage
 
         }*/
 
-        private void PiholeStateCheck()
+
+      
+
+        public void Load_Content()
         {
-            var piholeapi = new PiHoleAPI("192.168.113.10", "8b110955b9df47b0b7c3a623e600f030394e203a0abdde4f0e5a498af953a6f8");
 
-            if (piholeapi.Is_Pihole_Enabled())
-            {
-                isEnabledTextBlock.Text = "Enabled";
-                toggleStateButton.Content = "Disable";
-            }
-            else
-            {
-                isEnabledTextBlock.Text = "Disabled";
-                toggleStateButton.Content = "Enable";
-            }
+            contentFrame.Navigate(typeof(ContentPage));
 
-
-        }
-
-        private void toggleStateButton_Click(object sender, RoutedEventArgs e)
-        {
-            var piholeapi = new PiHoleAPI("192.168.113.10", "8b110955b9df47b0b7c3a623e600f030394e203a0abdde4f0e5a498af953a6f8");
-
-            if (piholeapi.Is_Pihole_Enabled())
-                piholeapi.Pihole_Change_State("disable");
-            else
-                piholeapi.Pihole_Change_State("enable");
-
-            PiholeStateCheck();
         }
 
         private void mainNav_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
@@ -130,8 +123,9 @@ namespace WinPiStats.Views.MainPage
 
             if (args.IsSettingsSelected)
             {
-                settingsFrame.Navigate(typeof(Testpage));
+                //settingsFrame.Navigate(typeof(SettingsPage));
                 //mainNav.IsBackButtonVisible = Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Visible;
+                
             }
 
         }

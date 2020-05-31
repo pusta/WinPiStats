@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -15,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WinPiStats.Views.MainPage;
+using WinPiStats.Views.Settings;
 
 namespace WinPiStats
 {
@@ -24,6 +26,7 @@ namespace WinPiStats
     /// </summary>
     sealed partial class App : Application
     {
+        Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -45,24 +48,25 @@ namespace WinPiStats
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
-            if (rootFrame == null)
-            {
-                // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
+             if (rootFrame == null)
+             {
+                 // Create a Frame to act as the navigation context and navigate to the first page
+                 rootFrame = new Frame();
 
-                rootFrame.NavigationFailed += OnNavigationFailed;
+                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    //TODO: Load state from previously suspended application
-                }
+                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                 {
+                     //TODO: Load state from previously suspended application
+                 }
 
-                // Place the frame in the current Window
-                Window.Current.Content = rootFrame;
+                 // Place the frame in the current Window
+                 Window.Current.Content = rootFrame;
 
-                
-            }
 
+             }
+            
+           
             if (e.PrelaunchActivated == false)
             {
                 if (rootFrame.Content == null)
@@ -70,8 +74,37 @@ namespace WinPiStats
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
-                }
+                    // rootFrame.Navigate(typeof(MainPage), e.Arguments);
+
+                    object value = localSettings.Values["First_Run"];
+
+                    if (localSettings.Values["Fist_Run"] != null)
+                    {
+
+                        if ((bool)value)
+                        {
+                            
+                            rootFrame.Navigate(typeof(FirstRun), e.Arguments);
+                            localSettings.Values["First_Run"] = false;
+
+                        }
+                        else
+                        {
+                            
+                            rootFrame.Navigate(typeof(MainPage), e.Arguments);
+
+
+                        }
+                    }
+
+                    
+                    else
+                    {
+                        
+                        rootFrame.Navigate(typeof(FirstRun), e.Arguments);
+                        localSettings.Values["First_Run"] = false;
+                    }
+               }
                 // Ensure the current window is active
                 Window.Current.Activate();
             }

@@ -10,38 +10,21 @@
     Background="{ThemeResource SystemControlChromeMediumLowAcrylicElementMediumBrush}" Loading="Page_Loading">
 
 
-    
-            <Grid Background="{ThemeResource SystemControlAcrylicElementBrush}" >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="400"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
 
-                <TextBlock x:Name="blockedTextBlock" HorizontalAlignment="Left" Margin="141,196,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" />
-                <!-- <TextBox x:Name="blockedTextbox" HorizontalAlignment="Left" Margin="141,196,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True"/> -->
-        <TextBlock x:Name="queriesTodayTextBlock" HorizontalAlignment="Left" Margin="139,256,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top"  Grid.Column="1"/>
-        <TextBlock x:Name="isEnabledTextBlock" HorizontalAlignment="Left" Margin="141,149,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1"/>
-        <Button x:Name="toggleStateButton" Content="Button" Margin="142,326,0,0" VerticalAlignment="Top" Click="toggleStateButton_Click" Grid.Column="1"/>
+    <Grid>
 
-        <Frame x:Name="settingsFrame" Grid.Column="2" />
-
-        <muxc:NavigationView x:Name="mainNav" PaneDisplayMode="LeftMinimal" IsBackButtonVisible="Collapsed" PaneTitle="Select A Pi Server" SelectionChanged="mainNav_SelectionChanged">
+    <muxc:NavigationView x:Name="mainNav"  CompactModeThresholdWidth="0" IsBackButtonVisible="Collapsed" PaneTitle="Select A Pi Server"  SelectionChanged="mainNav_SelectionChanged" Visibility="Visible">
             <muxc:NavigationView.MenuItems>
                 <muxc:NavigationViewItem Icon="Play" Content="Menu Item1" Tag="SamplePage1" />
                 <muxc:NavigationViewItem Icon="Save" Content="Menu Item2" Tag="SamplePage2" />
                 <muxc:NavigationViewItem Icon="Refresh" Content="Menu Item3" Tag="SamplePage3" />
                 <muxc:NavigationViewItem Icon="Download" Content="Menu Item4" Tag="SamplePage4" />
             </muxc:NavigationView.MenuItems>
-            <Frame x:Name="contentFrame"/>
+            <Frame x:FieldModifier="public" x:Name="contentFrame"/>
         </muxc:NavigationView>
 
 
 
-
     </Grid>
-     
+
 </Page>

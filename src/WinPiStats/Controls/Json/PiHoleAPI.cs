@@ -8,7 +8,7 @@ using Windows.Data.Json;
 using System.ServiceModel;
 
 
-namespace WinPiStats
+namespace WinPiStats.Controls.Json
 {
     public class PiHoleAPI
     {
