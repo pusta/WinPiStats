@@ -123,8 +123,8 @@ namespace WinPiStats.Views.MainPage
 
             if (args.IsSettingsSelected)
             {
-                //settingsFrame.Navigate(typeof(SettingsPage));
-                //mainNav.IsBackButtonVisible = Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Visible;
+                contentFrame.Navigate(typeof(SettingsPage));
+                
                 
             }
 

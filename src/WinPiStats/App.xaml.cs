@@ -83,7 +83,7 @@ namespace WinPiStats
 
                     object value = localSettings.Values["First_Run"];
 
-                    if (localSettings.Values["Fist_Run"] != null)
+                    if (localSettings.Values["First_Run"] != null)
                     {
 
                         if ((bool)value)
