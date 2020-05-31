@@ -13,12 +13,12 @@
 
     <Grid>
 
-    <muxc:NavigationView x:Name="mainNav"  CompactModeThresholdWidth="0" IsBackButtonVisible="Collapsed" PaneTitle="Select A Pi Server"  SelectionChanged="mainNav_SelectionChanged" Visibility="Visible">
+    <muxc:NavigationView x:Name="mainNav" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" SelectionChanged="mainNav_SelectionChanged" Visibility="Visible">
             <muxc:NavigationView.MenuItems>
-                <muxc:NavigationViewItem Icon="Play" Content="Menu Item1" Tag="SamplePage1" />
-                <muxc:NavigationViewItem Icon="Save" Content="Menu Item2" Tag="SamplePage2" />
+                <muxc:NavigationViewItem Icon="Home" Content="Home" Tag="ContentPage"/>
+                <!--<muxc:NavigationViewItem Icon="Save" Content="Menu Item2" Tag="SamplePage2" />
                 <muxc:NavigationViewItem Icon="Refresh" Content="Menu Item3" Tag="SamplePage3" />
-                <muxc:NavigationViewItem Icon="Download" Content="Menu Item4" Tag="SamplePage4" />
+                <muxc:NavigationViewItem Icon="Download" Content="Menu Item4" Tag="SamplePage4" /> -->
             </muxc:NavigationView.MenuItems>
             <Frame x:FieldModifier="public" x:Name="contentFrame"/>
         </muxc:NavigationView>

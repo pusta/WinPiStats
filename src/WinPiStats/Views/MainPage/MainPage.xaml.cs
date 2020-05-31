@@ -45,6 +45,7 @@ namespace WinPiStats.Views.MainPage
         public MainPage()
         {
             this.InitializeComponent();
+            Load_Content();
             
             
             
@@ -126,6 +127,25 @@ namespace WinPiStats.Views.MainPage
                 contentFrame.Navigate(typeof(SettingsPage));
                 
                 
+            }
+            else
+            {
+                var selectedItem = (Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
+                if (selectedItem != null)
+                {
+                    string selectedItemTag = ((string)selectedItem.Tag);
+                    //sender.Header = "Sample Page " + selectedItemTag.Substring(selectedItemTag.Length - 1);
+                    string pageName = "WinPiStats.Views.Content." + selectedItemTag;
+                    Type pageType = Type.GetType(pageName);
+                    contentFrame.Navigate(pageType);
+
+                }
+
+
+
+
+
+
             }
 
         }
