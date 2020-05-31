@@ -76,6 +76,11 @@ namespace WinPiStats
                     // parameter
                     // rootFrame.Navigate(typeof(MainPage), e.Arguments);
 
+                    /*Checks to see if the First_Run variable exists.
+                     *If it doesn't it calls the first run page to prompt the user to enter a PiHole Server
+                     *If it's not the first run, it calls the MainPage
+                     */
+
                     object value = localSettings.Values["First_Run"];
 
                     if (localSettings.Values["Fist_Run"] != null)
