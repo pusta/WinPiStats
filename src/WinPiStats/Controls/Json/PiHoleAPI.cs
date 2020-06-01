@@ -16,7 +16,9 @@ namespace WinPiStats.Controls.Json
         private string _piholeaddress;
         private string _apiinterface = @"/admin/api.php?";
         private string querySummaryString = "summary";
-        private string piholeAuthKey; 
+        private string piholeAuthKey;
+        private string piholeURL;
+        private string piholeauthURL;
         private static readonly HttpClient client = new HttpClient();
         
 
@@ -26,7 +28,10 @@ namespace WinPiStats.Controls.Json
 
             this._piholeaddress = piholeaddress;
             this.piholeAuthKey = authkey;
-               
+            this.piholeURL = "http://" + _piholeaddress.Trim('"') + _apiinterface;
+            this.piholeauthURL = "&auth=" + authkey.Trim('"');
+
+
         }
 
         public string Query_Pihole_Domains()
@@ -50,6 +55,22 @@ namespace WinPiStats.Controls.Json
 
         }
 
+        public string Ads_Blocked()
+        {
+
+            return Query_Pihole_String(querySummaryString)["ads_blocked_today"].ToString().Trim('"');
+
+        }
+
+        public string Ads_Percent_Blocked()
+
+        {
+
+            return Query_Pihole_String(querySummaryString)["ads_percentage_today"].ToString().Trim('"');
+
+
+        }
+
         public bool Is_Pihole_Enabled()
         {
             if (Query_Pihole_String(querySummaryString)["status"].ToString().Trim('"') == "enabled")
@@ -58,14 +79,22 @@ namespace WinPiStats.Controls.Json
                 return false;
 
 
+        }
+
+        public string topItems()
+        {
+
+            return Query_Pihole_Authenticated("topItems")["top_queries"].ToString().Trim('"');
 
 
 
         }
 
+
+
         public void Pihole_Change_State(string command)
         {
-            Pihole_Interact(piholeAuthKey, command);
+            Pihole_Interact(command);
                 
 
 
@@ -73,23 +102,17 @@ namespace WinPiStats.Controls.Json
 
         }
 
-        private bool Pihole_Interact(string authkey, string command)
+        private bool Pihole_Interact(string command)
         {
-            HttpResponseMessage response = client.GetAsync("http://" + _piholeaddress.Trim('"') + _apiinterface + command + "&auth=" +authkey.Trim('"')).Result;
+            // HttpResponseMessage response = client.GetAsync("http://" + _piholeaddress.Trim('"') + _apiinterface + command + "&auth=" +authkey.Trim('"')).Result;
+            HttpResponseMessage response = client.GetAsync(piholeURL + command + piholeauthURL).Result;
             var responseData = response.StatusCode;
 
             if (responseData.ToString() == "200")
                 return true;
             else
                 return false;
-
-
             
-
-
-
-
-
 
         }
 
@@ -97,7 +120,10 @@ namespace WinPiStats.Controls.Json
         private JsonObject Query_Pihole_String(string querystring)
         {
 
-            HttpResponseMessage response = client.GetAsync("http://" + _piholeaddress.Trim('"') + _apiinterface + querystring).Result;
+            //HttpResponseMessage response = client.GetAsync("http://" + _piholeaddress.Trim('"') + _apiinterface + querystring).Result;
+
+            HttpResponseMessage response = client.GetAsync(piholeURL + querystring).Result;
+
 
             var stringData = response.Content.ReadAsStringAsync().Result;
             
@@ -107,6 +133,23 @@ namespace WinPiStats.Controls.Json
             return rootObject;
 
 
+        }
+
+
+        private JsonObject Query_Pihole_Authenticated(string querystring)
+        {
+
+            //HttpResponseMessage response = client.GetAsync("http://" + _piholeaddress.Trim('"') + _apiinterface + querystring).Result;
+
+            HttpResponseMessage response = client.GetAsync(piholeURL + querystring + piholeauthURL).Result;
+
+
+            var stringData = response.Content.ReadAsStringAsync().Result;
+
+
+            var rootObject = JsonObject.Parse(stringData);
+
+            return rootObject;
 
 
         }

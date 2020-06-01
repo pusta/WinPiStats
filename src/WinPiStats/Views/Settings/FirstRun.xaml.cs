@@ -48,10 +48,18 @@ namespace WinPiStats.Views.Settings
             else
             {
 
-                localSettings.Values["NumberofServers"] = 0;
-                localSettings.Values["PiHoleServerName" + localSettings.Values["NumberofServers"].ToString()] = serverNameTextBox.Text;
+                localSettings.Values["NumberofServers"] = 1;
+
+                //reserved for multi-pihole support
+               /* localSettings.Values["PiHoleServerName" + localSettings.Values["NumberofServers"].ToString()] = serverNameTextBox.Text;
                 localSettings.Values["PiHoleAddress" + localSettings.Values["NumberofServers"].ToString()] = serverIPTextBox.Text;
-                localSettings.Values["PiHoleAuthKey" + localSettings.Values["NumberofServers"].ToString()] = apiKeyTextBox.Text;
+                localSettings.Values["PiHoleAuthKey" + localSettings.Values["NumberofServers"].ToString()] = apiKeyTextBox.Text;*/
+
+
+                localSettings.Values["PiHoleServerName"] = serverNameTextBox.Text;
+                localSettings.Values["PiHoleAddress"] = serverIPTextBox.Text;
+                localSettings.Values["PiHoleAuthKey"] = apiKeyTextBox.Text;
+
                 localSettings.Values["First_Run"] = false;
 
                 this.Frame.Navigate(typeof(MainPage.MainPage));

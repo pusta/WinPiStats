@@ -6,13 +6,53 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
 
     <Grid>
-        <TextBlock x:Name="blockedTextBlock" HorizontalAlignment="Left" Margin="141,196,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" />
-        <!-- <TextBox x:Name="blockedTextbox" HorizontalAlignment="Left" Margin="141,196,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True"/> -->
-        <TextBlock x:Name="queriesTodayTextBlock" HorizontalAlignment="Left" Margin="139,256,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top"  Grid.Column="1"/>
-        <TextBlock x:Name="isEnabledTextBlock" HorizontalAlignment="Left" Margin="141,149,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1"/>
-        <Button x:Name="toggleStateButton" Content="Button" Margin="142,326,0,0" VerticalAlignment="Top" Click="toggleStateButton_Click" Grid.Column="1"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Assets/pilogo.png" Width="25" Height="50" Margin="20,0,0,0" />
+                <TextBlock x:Name="piholeNameTextBlock" Text=""  TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="20" Margin="20,20,0,20" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Blocked Domains:" Margin="20,0,10,20" />
+                <TextBlock x:Name="blockedTextBlock" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Total Queries:" Margin="20,0,10,20" />
+                <TextBlock x:Name="queriesTodayTextBlock" HorizontalAlignment="Left"  Text="" TextWrapping="Wrap" VerticalAlignment="Top"  />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Ads Blocked:" Margin="20,0,10,20" />
+                <TextBlock x:Name="AdsBlockedTextBlock" Text="" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Percent Blocked:" Margin="20,0,10,20" />
+                <TextBlock x:Name="PercentAdsBlockedTextBlock" Text="" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="CurrentStateTextBlock" Text="PiHole Status:" Margin="20,0,10,20" />
+                <Image x:Name="GreenDot" Source="/Assets/green_dot20x20.png" Width="20" Height="20" Margin="0,0,5,25" Visibility="Collapsed"/>
+                <Image x:Name="RedDot" Source="/Assets/red_dot20x20.png" Width="20" Height="20" Margin="0,0,5,25" Visibility="Collapsed"/>
+             <!--   <TextBlock x:Name="isEnabledTextBlock" HorizontalAlignment="Left" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" /> -->
+            </StackPanel>
+            <Button x:Name="toggleStateButton" Content="Button"  VerticalAlignment="Top" Click="toggleStateButton_Click" Margin="20,0,10,0" />
+            <TextBlock x:Name="TopItemsTextBlock" TextWrapping="WrapWholeWords" />
+            
+              <TextBlock Text="{Binding listofTopItems}" FontSize="12" />
+                        
+
+
+        </StackPanel>
     </Grid>
 </Page>
