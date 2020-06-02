@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+    Background="{ThemeResource CMapUwpAcrylicBrush}" >
 
     <Grid>
         <Grid.RowDefinitions>
@@ -19,7 +19,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
+        <StackPanel Grid.Row="0" Grid.Column="0" x:Name="mainNavStackPanel">
             <StackPanel Orientation="Horizontal">
                 <Image Source="/Assets/pilogo.png" Width="25" Height="50" Margin="20,0,0,0" />
                 <TextBlock x:Name="piholeNameTextBlock" Text=""  TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="20" Margin="20,20,0,20" />

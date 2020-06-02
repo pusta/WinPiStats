@@ -42,9 +42,6 @@ namespace WinPiStats.Controls.Json
             return this.Query_Pihole_String(querySummaryString)["domains_being_blocked"].ToString().Trim('"');
             
             
-
-
-
         }
 
         public string Total_Queries_Today()
@@ -96,8 +93,6 @@ namespace WinPiStats.Controls.Json
         {
             Pihole_Interact(command);
                 
-
-
 
 
         }
