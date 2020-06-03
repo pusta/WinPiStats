@@ -80,11 +80,17 @@ namespace WinPiStats.Controls.Json
 
         public string topItems()
         {
+            string topItemsFinal= " ";
+            var topItems = Query_Pihole_Authenticated("topItems")["top_queries"].ToString().Trim('"').Trim('{').Trim('}');
+            //return Query_Pihole_Authenticated("topItems")["top_queries"].ToString().Trim('"');
+            var splitItmes = topItems.Split(',');
 
-            return Query_Pihole_Authenticated("topItems")["top_queries"].ToString().Trim('"');
+            foreach (var word in splitItmes)
+            {
+                topItemsFinal = topItemsFinal + Environment.NewLine + word;
+            }
 
-
-
+            return topItemsFinal;
         }
 
 

@@ -99,7 +99,8 @@ namespace WinPiStats.Views.Content
             piholeNameTextBlock.Text = piholeName;
             AdsBlockedTextBlock.Text = piholeapi.Ads_Blocked();
             PercentAdsBlockedTextBlock.Text = piholeapi.Ads_Percent_Blocked() + "%";
-            // TopItemsTextBlock.Text = piholeapi.topItems();
+            TopItemsTextBlock.Text = piholeapi.topItems();
+
            
             
         }

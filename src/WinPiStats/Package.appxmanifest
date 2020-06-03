@@ -15,7 +15,7 @@
 
   <Properties>
     <DisplayName>WinPiStats</DisplayName>
-    <PublisherDisplayName>ckapu</PublisherDisplayName>
+    <PublisherDisplayName>Chris Kapusta</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

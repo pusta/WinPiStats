@@ -14,13 +14,15 @@
 
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Default">
-                    <AcrylicBrush x:Key="CMapUwpAcrylicBrush"
+                    <AcrylicBrush x:Key="CMapUwpAcrylicBrush" 
                           BackgroundSource="HostBackdrop"
                           TintColor="Black"
-                          TintOpacity="0.4"
-                          FallbackColor="{StaticResource SystemAccentColor}"/>
+                          TintOpacity="0.3"
+                          FallbackColor="Black"/>
+                    
+                    
                 </ResourceDictionary>
-
+                
                 <ResourceDictionary x:Key="HighContrast">
                     <SolidColorBrush x:Key="CMapUwpAcrylicBrush"
                              Color="{ThemeResource SystemColorWindowColor}"/>
@@ -29,9 +31,9 @@
                 <ResourceDictionary x:Key="Light">
                     <AcrylicBrush x:Key="CMapUwpAcrylicBrush"
                           BackgroundSource="HostBackdrop"
-                          TintColor="Black"
-                          TintOpacity="0.4"
-                          FallbackColor="{StaticResource SystemAccentColor}"/>
+                          TintColor="WhiteSmoke"
+                          TintOpacity="0.7"
+                          FallbackColor="WhiteSmoke"/>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
 
