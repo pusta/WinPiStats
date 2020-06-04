@@ -7,13 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
-    Background="{ThemeResource CMapUwpAcrylicBrush}" Loading="Page_Loading">
+    Background="Black" Loading="Page_Loading">
 
 
 
-    <Grid>
+    <Grid Background="{ThemeResource SystemControlAccentDark2AcrylicWindowAccentDark2MediumHighBrush}">
 
-        <muxc:NavigationView x:Name="mainNav" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" SelectionChanged="mainNav_SelectionChanged" Visibility="Visible">
+        <muxc:NavigationView x:Name="mainNav" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" SelectionChanged="mainNav_SelectionChanged" Visibility="Visible" Background="Black">
             <muxc:NavigationView.MenuItems>
                 <muxc:NavigationViewItem Icon="Home" Content="Home" Tag="ContentPage"/>
                 <!--<muxc:NavigationViewItem Icon="Save" Content="Menu Item2" Tag="SamplePage2" />

@@ -93,6 +93,15 @@ namespace WinPiStats.Controls.Json
             return topItemsFinal;
         }
 
+        public string Most_Recent_Blocked()
+        {
+
+            return PiHole_Query_Text("recentBlocked");
+
+
+
+        }
+
 
 
         public void Pihole_Change_State(string command)
@@ -154,6 +163,23 @@ namespace WinPiStats.Controls.Json
 
 
         }
+
+        private string PiHole_Query_Text(string querystring)
+        {
+
+            HttpResponseMessage response = client.GetAsync(piholeURL + querystring + piholeauthURL).Result;
+            return response.Content.ReadAsStringAsync().Result;
+
+
+
+
+
+
+        }
+
+
+
+
 
 
 

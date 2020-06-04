@@ -100,6 +100,7 @@ namespace WinPiStats.Views.Content
             AdsBlockedTextBlock.Text = piholeapi.Ads_Blocked();
             PercentAdsBlockedTextBlock.Text = piholeapi.Ads_Percent_Blocked() + "%";
             TopItemsTextBlock.Text = piholeapi.topItems();
+            LastBlockTextBlock.Text = piholeapi.Most_Recent_Blocked();
 
            
             
