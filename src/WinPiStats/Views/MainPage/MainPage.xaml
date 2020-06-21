@@ -13,13 +13,13 @@
 
     <Grid Background="{ThemeResource SystemControlAccentDark2AcrylicWindowAccentDark2MediumHighBrush}">
 
-        <muxc:NavigationView x:Name="mainNav" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" SelectionChanged="mainNav_SelectionChanged" Visibility="Visible" Background="Black">
-            <muxc:NavigationView.MenuItems>
+        <muxc:NavigationView x:Name="mainNav" PaneDisplayMode="Left" IsBackButtonVisible="Collapsed" SelectionChanged="mainNav_SelectionChanged" Visibility="Visible" Background="Black">
+           <!-- <muxc:NavigationView.MenuItems>
                 <muxc:NavigationViewItem Icon="Home" Content="Home" Tag="ContentPage"/>
-                <!--<muxc:NavigationViewItem Icon="Save" Content="Menu Item2" Tag="SamplePage2" />
+                <muxc:NavigationViewItem Icon="Save" Content="Menu Item2" Tag="SamplePage2" />
                 <muxc:NavigationViewItem Icon="Refresh" Content="Menu Item3" Tag="SamplePage3" />
-                <muxc:NavigationViewItem Icon="Download" Content="Menu Item4" Tag="SamplePage4" /> -->
-            </muxc:NavigationView.MenuItems>
+                <muxc:NavigationViewItem Icon="Download" Content="Menu Item4" Tag="SamplePage4" /> 
+            </muxc:NavigationView.MenuItems> -->
             <Frame x:FieldModifier="public" x:Name="contentFrame"/>
         </muxc:NavigationView>
 

@@ -101,6 +101,7 @@ namespace WinPiStats.Views.Content
             PercentAdsBlockedTextBlock.Text = piholeapi.Ads_Percent_Blocked() + "%";
             TopItemsTextBlock.Text = piholeapi.topItems();
             LastBlockTextBlock.Text = piholeapi.Most_Recent_Blocked();
+            TopClientsTextBlock.Text = piholeapi.topClients();
 
            
             
@@ -110,9 +111,9 @@ namespace WinPiStats.Views.Content
         {
             var numPiholes = localSettings.Values["NumberofServers"];
 
-            piholeName = localSettings.Values["PiHoleServerName"].ToString();
-            piholeAddress = localSettings.Values["PiHoleAddress"].ToString();
-            piholeAuthkey = localSettings.Values["PiHoleAuthKey"].ToString();
+            piholeName = localSettings.Values["PiHoleServerName" + '-' + localSettings.Values["NumberofServers"].ToString()].ToString();
+            piholeAddress = localSettings.Values["PiHoleAddress" + '-' + localSettings.Values["NumberofServers"].ToString()].ToString();
+            piholeAuthkey = localSettings.Values["PiHoleAuthKey" + '-' + localSettings.Values["NumberofServers"].ToString()].ToString();
 
             
 

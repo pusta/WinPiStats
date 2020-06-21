@@ -93,6 +93,20 @@ namespace WinPiStats.Controls.Json
             return topItemsFinal;
         }
 
+        public string topClients()
+        {
+            string topItemsFinal = " ";
+            var topItems = Query_Pihole_Authenticated("topClients")["top_sources"].ToString().Trim('"').Trim('{').Trim('}');
+            var splitItmes = topItems.Split(',');
+
+            foreach (var word in splitItmes)
+            {
+                topItemsFinal = topItemsFinal + Environment.NewLine + word;
+            }
+
+            return topItemsFinal;
+        }
+
         public string Most_Recent_Blocked()
         {
 

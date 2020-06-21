@@ -48,21 +48,31 @@
             </StackPanel>
             
             <Button x:Name="toggleStateButton" Content="Button"  VerticalAlignment="Top" Click="toggleStateButton_Click" Margin="20,0,10,0" />
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Top Domains:" Margin="20,20,10,0"/>
-                <TextBlock x:Name="TopItemsTextBlock" TextWrapping="WrapWholeWords" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.IsVerticalRailEnabled="True"  Margin="20,0,10,20"/>
-            </StackPanel>
             
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Last Blocked Domain:" Margin="20,0,10,0"/>
-                <TextBlock x:Name="LastBlockTextBlock" Margin="20,0,10,0" />
-
-            </StackPanel>
 
            
 
 
 
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1">
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Top Clients:" Margin="20,20,10,0"/>
+                <TextBlock x:Name="TopClientsTextBlock" TextWrapping="WrapWholeWords" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.IsVerticalRailEnabled="True"  Margin="20,0,10,20"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Top Domains:" Margin="20,20,10,0"/>
+                <TextBlock x:Name="TopItemsTextBlock" TextWrapping="WrapWholeWords" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.IsVerticalRailEnabled="True"  Margin="20,0,10,20"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Last Blocked Domain:" Margin="20,0,10,0"/>
+                <TextBlock x:Name="LastBlockTextBlock" Margin="20,0,10,0" />
+
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

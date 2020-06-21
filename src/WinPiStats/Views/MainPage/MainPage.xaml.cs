@@ -23,6 +23,9 @@ using Windows.UI.Core;
 using WinPiStats.Views.Settings;
 using WinPiStats.Controls.Json;
 using WinPiStats.Views.Content;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+
 
 
 
@@ -45,7 +48,8 @@ namespace WinPiStats.Views.MainPage
         public MainPage()
         {
             this.InitializeComponent();
-            Load_Content();
+           Render_Menu();
+            //Load_Content();
             
             
             
@@ -60,15 +64,7 @@ namespace WinPiStats.Views.MainPage
             
         }
 
-       /* public async void Launch_Win32()
-        {
-            if (ApiInformation.IsApiContractPresent("Windows.ApplicationModel.FullTrustAppContract", 1, 0))
-            {
-                await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync();
-            }
-
-
-        }*/
+     
 
         private void Page_Loading(FrameworkElement sender, object args)
         {
@@ -77,20 +73,39 @@ namespace WinPiStats.Views.MainPage
             
         }
 
-        private void ReadSettings()
+        private void Render_Menu()
         {
 
-            // if (localSettings.Values["First_Run"] == null || localSettings.Values["First_Run"] == true)
-            //  {
+            mainNav.MenuItems.Add(new Microsoft.UI.Xaml.Controls.NavigationViewItemSeparator());
+            var numServers = Convert.ToInt32(localSettings.Values["NumberofServers"]);
+            var uriImage = "ms-appx:///Assets/pilogo.png";
+            var uri = new Uri(uriImage);
+            var piIcon = new BitmapIcon();
+            piIcon.UriSource = uri;
 
-            //First_Run();
+            for (var i = 0; i < numServers; i++)
+            {
+                Microsoft.UI.Xaml.Controls.NavigationViewItem newMenu = new Microsoft.UI.Xaml.Controls.NavigationViewItem();
+                newMenu.Content = localSettings.Values["PiHoleServerName" + '-' + localSettings.Values["NumberofServers"].ToString()];
+                newMenu.Icon = piIcon;
 
-           // }
-           // else
-           // {
+                mainNav.MenuItems.Add(newMenu);
 
-           // }
 
+            }
+ 
+
+
+
+
+
+        }
+
+        private void ReadSettings()
+        {
+            
+           
+           
 
         }
 
@@ -135,9 +150,10 @@ namespace WinPiStats.Views.MainPage
                 {
                     string selectedItemTag = ((string)selectedItem.Tag);
                     //sender.Header = "Sample Page " + selectedItemTag.Substring(selectedItemTag.Length - 1);
-                    string pageName = "WinPiStats.Views.Content." + selectedItemTag;
-                    Type pageType = Type.GetType(pageName);
-                    contentFrame.Navigate(pageType);
+                   // string pageName = "WinPiStats.Views.Content." + selectedItemTag;
+                    //Type pageType = Type.GetType(pageName);
+                    contentFrame.Navigate(typeof(ContentPage));
+
 
                 }
 
