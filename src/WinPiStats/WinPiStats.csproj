@@ -120,6 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Settings\Preferences.cs" />
+    <Compile Include="Controls\Settings\PiHoleSettings.cs" />
     <Compile Include="Views\Content\ContentPage.xaml.cs">
       <DependentUpon>ContentPage.xaml</DependentUpon>
     </Compile>
