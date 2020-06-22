@@ -13,7 +13,7 @@
 
     <Grid Background="{ThemeResource SystemControlAccentDark2AcrylicWindowAccentDark2MediumHighBrush}">
 
-        <muxc:NavigationView x:Name="mainNav" PaneDisplayMode="Left" IsBackButtonVisible="Collapsed" SelectionChanged="mainNav_SelectionChanged" Visibility="Visible" Background="Black" PaneTitle="Win-Pi-Stats">
+        <muxc:NavigationView x:Name="mainNav" PaneDisplayMode="Left" IsBackButtonVisible="Collapsed" SelectionChanged="mainNav_SelectionChanged" Visibility="Visible" Background="Black" PaneTitle="Centaurus">
            <!-- <muxc:NavigationView.MenuItems>
                 <muxc:NavigationViewItem Icon="Home" Content="Home" Tag="ContentPage"/>
                 <muxc:NavigationViewItem Icon="Save" Content="Menu Item2" Tag="SamplePage2" />

@@ -30,17 +30,7 @@ namespace WinPiStats.Views.MainPage
            Render_Menu();
             //Load_Content();
             
-            
-            
-            
-           
-            
 
-              
-
-
-
-            
         }
 
      
