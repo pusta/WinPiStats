@@ -9,11 +9,12 @@ namespace WinPiStats.Controls.Settings
 {
     class PiHoleSettings
     {
-        public string piHoleName { get; set; }
-        public string piHoleAddress { get; set; }
-        public string piHoleAuthKey { get; set; }
-
         ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+        public string piHoleName { get; }
+        public string piHoleAddress { get; }
+        public string piHoleAuthKey { get; }
+
+       
 
 
         public PiHoleSettings(string piholeServerNumber)

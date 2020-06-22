@@ -90,7 +90,7 @@ namespace WinPiStats
                         {
                             
                             rootFrame.Navigate(typeof(FirstRun), e.Arguments);
-                            localSettings.Values["First_Run"] = false;
+                            //localSettings.Values["First_Run"] = false;
 
                         }
                         else
@@ -107,7 +107,7 @@ namespace WinPiStats
                     {
                         
                         rootFrame.Navigate(typeof(FirstRun), e.Arguments);
-                        localSettings.Values["First_Run"] = false;
+                       // localSettings.Values["First_Run"] = false;
                     }
                }
                 // Ensure the current window is active

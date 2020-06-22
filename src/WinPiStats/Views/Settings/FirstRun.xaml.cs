@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using WinPiStats.Controls.Settings;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -11,7 +12,7 @@ namespace WinPiStats.Views.Settings
     /// </summary>
     public sealed partial class FirstRun : Page
     {
-        Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+        
         public FirstRun()
         {
             this.InitializeComponent();
@@ -35,19 +36,13 @@ namespace WinPiStats.Views.Settings
             else
             {
 
-                localSettings.Values["NumberofServers"] = 1;
+                
+                var settingsStore = new SettingsStore("1");
 
-                //reserved for multi-pihole support
-                localSettings.Values["PiHoleServerName" + '-' + localSettings.Values["NumberofServers"].ToString()] = serverNameTextBox.Text;
-                localSettings.Values["PiHoleAddress" + '-' + localSettings.Values["NumberofServers"].ToString()] = serverIPTextBox.Text;
-                localSettings.Values["PiHoleAuthKey" + '-' + localSettings.Values["NumberofServers"].ToString()] = apiKeyTextBox.Text;
+                settingsStore.Store_Settings(serverNameTextBox.Text, apiKeyTextBox.Text, serverIPTextBox.Text);
 
-                //Single PiHole Support
-                //localSettings.Values["PiHoleServerName"] = serverNameTextBox.Text;
-                //localSettings.Values["PiHoleAddress"] = serverIPTextBox.Text;
-                //localSettings.Values["PiHoleAuthKey"] = apiKeyTextBox.Text;
 
-                localSettings.Values["First_Run"] = false;
+                settingsStore.First_Run(false);
 
                 this.Frame.Navigate(typeof(MainPage.MainPage));
 
