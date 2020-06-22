@@ -83,10 +83,11 @@ namespace WinPiStats.Views.MainPage
             var piIcon = new BitmapIcon();
             piIcon.UriSource = uri;
 
-            for (var i = 0; i < numServers; i++)
+            for (var i = 1; i <= numServers; i++)
             {
                 Microsoft.UI.Xaml.Controls.NavigationViewItem newMenu = new Microsoft.UI.Xaml.Controls.NavigationViewItem();
                 newMenu.Content = localSettings.Values["PiHoleServerName" + '-' + localSettings.Values["NumberofServers"].ToString()];
+                newMenu.Tag = i.ToString();
                 newMenu.Icon = piIcon;
 
                 mainNav.MenuItems.Add(newMenu);
@@ -152,7 +153,7 @@ namespace WinPiStats.Views.MainPage
                     //sender.Header = "Sample Page " + selectedItemTag.Substring(selectedItemTag.Length - 1);
                    // string pageName = "WinPiStats.Views.Content." + selectedItemTag;
                     //Type pageType = Type.GetType(pageName);
-                    contentFrame.Navigate(typeof(ContentPage));
+                    contentFrame.Navigate(typeof(ContentPage), selectedItemTag);
 
 
                 }

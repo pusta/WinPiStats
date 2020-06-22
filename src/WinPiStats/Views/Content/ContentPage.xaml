@@ -6,20 +6,21 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource CMapUwpAcrylicBrush}" >
+    Background="{ThemeResource CMapUwpAcrylicBrush}" Loading="Page_Loading">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            
-            
+            <RowDefinition Height="143*" />
+            <RowDefinition Height="107*"/>
+
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" x:Name="mainNavStackPanel">
+        <StackPanel Grid.Row="0" Grid.Column="0" x:Name="mainNavStackPanel" Grid.RowSpan="2">
             <StackPanel Orientation="Horizontal" >
                 <Image Source="/Assets/pilogo.png" Width="25" Height="50" Margin="20,0,0,0" />
                 <TextBlock x:Name="piholeNameTextBlock" Text=""  TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="20" Margin="20,20,0,20" />
@@ -44,33 +45,33 @@
                 <TextBlock x:Name="CurrentStateTextBlock" Text="PiHole Status:" Margin="20,0,10,20" />
                 <Image x:Name="GreenDot" Source="/Assets/green_dot20x20.png" Width="20" Height="20" Margin="0,0,5,25" Visibility="Collapsed"/>
                 <Image x:Name="RedDot" Source="/Assets/red_dot20x20.png" Width="20" Height="20" Margin="0,0,5,25" Visibility="Collapsed"/>
-             <!--   <TextBlock x:Name="isEnabledTextBlock" HorizontalAlignment="Left" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" /> -->
+                <!--   <TextBlock x:Name="isEnabledTextBlock" HorizontalAlignment="Left" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" /> -->
             </StackPanel>
-            
-            <Button x:Name="toggleStateButton" Content="Button"  VerticalAlignment="Top" Click="toggleStateButton_Click" Margin="20,0,10,0" />
-            
 
-           
+            <Button x:Name="toggleStateButton" Content="Button"  VerticalAlignment="Top" Click="toggleStateButton_Click" Margin="20,0,10,0" />
+
+
+
 
 
 
         </StackPanel>
 
-        <StackPanel Grid.Row="0" Grid.Column="1">
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
 
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Top Clients:" Margin="20,20,10,0"/>
+                <TextBlock Text="Top Clients:" Margin="20,20,10,0" FontWeight="Bold"/>
                 <TextBlock x:Name="TopClientsTextBlock" TextWrapping="WrapWholeWords" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.IsVerticalRailEnabled="True"  Margin="20,0,10,20"/>
             </StackPanel>
 
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Top Domains:" Margin="20,20,10,0"/>
+                <TextBlock Text="Top Domains:" Margin="20,20,10,0" FontWeight="Bold"/>
                 <TextBlock x:Name="TopItemsTextBlock" TextWrapping="WrapWholeWords" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.IsVerticalRailEnabled="True"  Margin="20,0,10,20"/>
             </StackPanel>
 
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Last Blocked Domain:" Margin="20,0,10,0"/>
-                <TextBlock x:Name="LastBlockTextBlock" Margin="20,0,10,0" />
+                <TextBlock Text="Last Blocked Domain:" Margin="20,0,10,0" FontWeight="Bold"/>
+                <TextBlock x:Name="LastBlockTextBlock" Margin="20,20,10,0" />
 
             </StackPanel>
         </StackPanel>

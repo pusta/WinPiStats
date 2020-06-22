@@ -32,7 +32,7 @@ namespace WinPiStats.Views.Content
         private string piholeAuthkey;
         private string piholeAddress;
         private string piholeName;
-        
+        private string piholeServerNumber;   
         
         
         
@@ -40,13 +40,11 @@ namespace WinPiStats.Views.Content
         public ContentPage()
         {
             
-            this.InitializeComponent();
+            InitializeComponent();
            
 
-            ReadSettings();
-            UpdatePiInfo();   
-                        
-            PiholeStateCheck();
+            //ReadSettings();
+            
 
            
                 
@@ -101,27 +99,52 @@ namespace WinPiStats.Views.Content
             PercentAdsBlockedTextBlock.Text = piholeapi.Ads_Percent_Blocked() + "%";
             TopItemsTextBlock.Text = piholeapi.topItems();
             LastBlockTextBlock.Text = piholeapi.Most_Recent_Blocked();
+            //LastBlockTextBlock.Text = piholeServerNumber;
             TopClientsTextBlock.Text = piholeapi.topClients();
 
            
             
         }
 
-        private void ReadSettings()
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var numPiholes = localSettings.Values["NumberofServers"];
+            base.OnNavigatedTo(e);
+            piholeServerNumber = e.Parameter as string;
 
-            piholeName = localSettings.Values["PiHoleServerName" + '-' + localSettings.Values["NumberofServers"].ToString()].ToString();
-            piholeAddress = localSettings.Values["PiHoleAddress" + '-' + localSettings.Values["NumberofServers"].ToString()].ToString();
-            piholeAuthkey = localSettings.Values["PiHoleAuthKey" + '-' + localSettings.Values["NumberofServers"].ToString()].ToString();
 
-            
 
 
 
         }
 
-        
-        
+        private void ReadSettings()
+        {
+            var numPiholes = localSettings.Values["NumberofServers"];
+
+            /*piholeName = localSettings.Values["PiHoleServerName" + '-' + localSettings.Values["NumberofServers"].ToString()].ToString();
+            piholeAddress = localSettings.Values["PiHoleAddress" + '-' + localSettings.Values["NumberofServers"].ToString()].ToString();
+            piholeAuthkey = localSettings.Values["PiHoleAuthKey" + '-' + localSettings.Values["NumberofServers"].ToString()].ToString();*/
+
+            piholeName = localSettings.Values["PiHoleServerName" + '-' + piholeServerNumber].ToString();
+            piholeAddress = localSettings.Values["PiHoleAddress" + '-' + piholeServerNumber].ToString();
+            piholeAuthkey = localSettings.Values["PiHoleAuthKey" + '-' + piholeServerNumber].ToString();
+
+
+
+
+
+        }
+
+        private void Page_Loading(FrameworkElement sender, object args)
+        {
+
+            ReadSettings();
+            UpdatePiInfo();
+
+            PiholeStateCheck();
+
+        }
+
+      
     }
 }
