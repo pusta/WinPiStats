@@ -1,19 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using WinPiStats.Views.Content;
-using WinPiStats.Views.MainPage;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -55,7 +42,7 @@ namespace WinPiStats.Views.Settings
                 localSettings.Values["PiHoleAddress" + '-' + localSettings.Values["NumberofServers"].ToString()] = serverIPTextBox.Text;
                 localSettings.Values["PiHoleAuthKey" + '-' + localSettings.Values["NumberofServers"].ToString()] = apiKeyTextBox.Text;
 
-
+                //Single PiHole Support
                 //localSettings.Values["PiHoleServerName"] = serverNameTextBox.Text;
                 //localSettings.Values["PiHoleAddress"] = serverIPTextBox.Text;
                 //localSettings.Values["PiHoleAuthKey"] = apiKeyTextBox.Text;
