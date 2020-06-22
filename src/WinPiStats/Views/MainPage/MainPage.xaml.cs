@@ -50,9 +50,10 @@ namespace WinPiStats.Views.MainPage
         private void Render_Menu()
         {
 
-            var settingsStore = new SettingsStore();
+            
             mainNav.MenuItems.Add(new Microsoft.UI.Xaml.Controls.NavigationViewItemSeparator());
-            var numServers = Convert.ToInt32(settingsStore.Number_of_Servers());
+            var serverCount = new ServerCount();
+            var numServers = Convert.ToInt32(serverCount.NumberOfServers);
             var uriImage = "ms-appx:///Assets/pilogo.png";
             var uri = new Uri(uriImage);
             var piIcon = new BitmapIcon();
