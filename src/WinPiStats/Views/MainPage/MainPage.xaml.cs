@@ -52,8 +52,9 @@ namespace WinPiStats.Views.MainPage
             for (var i = 1; i <= numServers; i++)
             {
                 Microsoft.UI.Xaml.Controls.NavigationViewItem newMenu = new Microsoft.UI.Xaml.Controls.NavigationViewItem();
-                var piHoleSettings = new PiHoleSettings(i.ToString());
-                newMenu.Content = piHoleSettings.piHoleName;
+                var piholesettingsstore = new PiHoleSettingsStore(i.ToString());
+                var piholeinfo = piholesettingsstore.Retrive_Settings();
+                newMenu.Content = piholeinfo.PiHoleServerName;
                 newMenu.Tag = i.ToString();
                 newMenu.Icon = piIcon;
 

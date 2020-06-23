@@ -36,13 +36,23 @@ namespace WinPiStats.Views.Settings
             else
             {
 
-                
-                var settingsStore = new SettingsStore("1");
+                var piholesettings = new PiHoleSettingsStore("1");
+                var piholeinfo = new PiHoleServerInfo();
+                var firstrun = new AppFirstRun();
+                piholeinfo.PiHoleServerName = serverNameTextBox.Text;
+                piholeinfo.PiHoleServerAuthKey = apiKeyTextBox.Text;
+                piholeinfo.PiHoleServerAddress = serverIPTextBox.Text;
 
-                settingsStore.Store_Settings(serverNameTextBox.Text, apiKeyTextBox.Text, serverIPTextBox.Text);
+                piholesettings.Save_Settings(piholeinfo);
+                firstrun.FirstRun = false;
 
 
-                settingsStore.First_Run(false);
+               // var settingsStore = new SettingsStore("1");
+
+               // settingsStore.Store_Settings(serverNameTextBox.Text, apiKeyTextBox.Text, serverIPTextBox.Text);
+
+
+                //settingsStore.First_Run(false);
 
                 this.Frame.Navigate(typeof(MainPage.MainPage));
 

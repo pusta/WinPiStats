@@ -5,10 +5,29 @@
     xmlns:local="using:WinPiStats.Views.Settings"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource CMapUwpAcrylicBrush}" Loading="Page_Loading">
 
+    <SplitView x:Name="SettingSplitView" OpenPaneLength="300" DisplayMode="Inline" IsPaneOpen="False" PanePlacement="Right" LostFocus="SettingSplitView_LostFocus" PaneBackground="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"
+ >
+        <SplitView.Pane>
 
+            <StackPanel>
+                <TextBlock x:Name="addModifyBlock" />
+                <TextBlock Text="Server Name:" />
+                <TextBox x:Name="serverNameBox" />
+                <TextBlock Text="Server Address:" />
+                <TextBox x:Name="serverAddressBox" />
+                <TextBlock Text="Auth Key" />
+                <TextBox x:Name="serverAuthBox" />
+                <Button x:Name="saveButton" Content="Save" />
+                <Button x:Name="cancelButton" Content="Cancel"  Click="cancelButton_Click"/>
+
+
+            </StackPanel>
+
+        </SplitView.Pane>
     <StackPanel Orientation="Vertical">
 
         <Grid>
@@ -17,11 +36,24 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-
-            <TextBlock x:Name="settingsPageTextBlock" Text="Settings" FontSize="30" Grid.Row="0" Grid.Column="0" Margin="20, 10, 0 ,0"/>
+            <StackPanel Orientation="Vertical">
+                <TextBlock x:Name="settingsPageTextBlock" Text="Settings" FontSize="30" Grid.Row="0" Grid.Column="0" Margin="20, 10, 0 ,0"/>
+            
+                <TextBlock Text="Please select a PiHole server:" Margin="20,10,0,0"/>
+                <ListBox x:Name="piServerList" Margin="20, 10, 0 ,0" SelectionChanged="piServerList_SelectionChanged" />
+                    <StackPanel Orientation="Horizontal">    
+                <Button x:Name="modifyButton" Content="Modify" IsEnabled="False"  Click="modifyButton_Click"/>
+                    <Button x:Name="deleteButton" Content ="Delete" IsEnabled="False" Click="deleteButton_Click" />
+                    </StackPanel>
+                    <Button x:Name="addNewButton" Content="Add Server" Click="addNewButton_Click" />
+                </StackPanel>
         </Grid>
         
+        
+        
     </StackPanel>
+    </SplitView>
+    
 </Page>

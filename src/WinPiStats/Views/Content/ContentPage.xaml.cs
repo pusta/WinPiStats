@@ -15,7 +15,9 @@ namespace WinPiStats.Views.Content
     {
 
         private string piholeServerNumber;
-        private PiHoleSettings piHoleSettings;
+        private PiHoleSettingsStore piholesettingsstore;
+        private PiHoleServerInfo piholeserverinfo;
+
         
         
         
@@ -25,8 +27,7 @@ namespace WinPiStats.Views.Content
             
             InitializeComponent();
            
-
-            
+                 
             
 
            
@@ -37,7 +38,7 @@ namespace WinPiStats.Views.Content
         private void PiholeStateCheck()
         {
 
-            var piholeapi = new PiHoleAPI(piHoleSettings.piHoleAddress, piHoleSettings.piHoleAuthKey);
+            var piholeapi = new PiHoleAPI(piholeserverinfo.PiHoleServerAddress, piholeserverinfo.PiHoleServerAuthKey);
             if (piholeapi.Is_Pihole_Enabled())
             {
                 
@@ -58,7 +59,7 @@ namespace WinPiStats.Views.Content
 
         private void toggleStateButton_Click(object sender, RoutedEventArgs e)
         {
-            var piholeapi = new PiHoleAPI(piHoleSettings.piHoleAddress, piHoleSettings.piHoleAuthKey);
+            var piholeapi = new PiHoleAPI(piholeserverinfo.PiHoleServerAddress, piholeserverinfo.PiHoleServerAuthKey);
 
             if (piholeapi.Is_Pihole_Enabled())
                 piholeapi.Pihole_Change_State("disable");
@@ -73,11 +74,12 @@ namespace WinPiStats.Views.Content
         private void UpdatePiInfo()
         {
 
-            var piholeapi = new PiHoleAPI(piHoleSettings.piHoleAddress, piHoleSettings.piHoleAuthKey);
+            var piholeapi = new PiHoleAPI(piholeserverinfo.PiHoleServerAddress, piholeserverinfo.PiHoleServerAuthKey);
+
+            piholeNameTextBlock.Text = piholeserverinfo.PiHoleServerName;
 
             blockedTextBlock.Text = piholeapi.Query_Pihole_Domains();
             queriesTodayTextBlock.Text = piholeapi.Total_Queries_Today();
-            piholeNameTextBlock.Text = piHoleSettings.piHoleName;
             AdsBlockedTextBlock.Text = piholeapi.Ads_Blocked();
             PercentAdsBlockedTextBlock.Text = piholeapi.Ads_Percent_Blocked() + "%";
             TopItemsTextBlock.Text = piholeapi.topItems();
@@ -102,7 +104,9 @@ namespace WinPiStats.Views.Content
         {
 
            
-            piHoleSettings = new PiHoleSettings(piholeServerNumber);
+            
+            piholesettingsstore = new PiHoleSettingsStore(piholeServerNumber);
+            piholeserverinfo = piholesettingsstore.Retrive_Settings();
             UpdatePiInfo();
 
             PiholeStateCheck();

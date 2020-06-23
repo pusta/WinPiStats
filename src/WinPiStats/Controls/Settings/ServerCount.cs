@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Storage;
 
 
@@ -13,12 +9,12 @@ namespace WinPiStats.Controls.Settings
 
         ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
 
-        public string NumberOfServers { 
+        public int NumberOfServers { 
             
             get
             {
 
-                return localSettings.Values["NumberofServers"].ToString();
+                return Convert.ToInt32(localSettings.Values["NumberofServers"]);
                 
 
             }
