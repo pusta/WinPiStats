@@ -6,12 +6,22 @@ using System.Threading.Tasks;
 
 namespace WinPiStats.Controls.Settings
 {
-    class PiHoleServerInfo
+    public class PiHoleServerInfo
     {
 
         public string PiHoleServerName { get; set; }
         public string PiHoleServerAddress { get; set; }
         public string PiHoleServerAuthKey { get; set; }
 
+
+        public string HostNameSummary
+        {
+            get
+            {
+                return this.PiHoleServerName;
+            }
+        }
     }
 }
+
+    

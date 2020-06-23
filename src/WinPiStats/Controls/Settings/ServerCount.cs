@@ -30,7 +30,32 @@ namespace WinPiStats.Controls.Settings
                 
         }
 
+        public void Increase_Servers()
+        {
 
+            if (this.NumberOfServers == 0)
+            {
+               this.NumberOfServers = 1;
+
+            }
+            else
+            {
+                var numServers = this.NumberOfServers;
+                numServers += numServers;
+                this.NumberOfServers = numServers;
+
+
+
+
+            }
+
+
+
+
+
+
+
+        }
 
 
 

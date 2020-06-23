@@ -38,12 +38,14 @@ namespace WinPiStats.Views.Settings
 
                 var piholesettings = new PiHoleSettingsStore("1");
                 var piholeinfo = new PiHoleServerInfo();
+                var servercount = new ServerCount();
                 var firstrun = new AppFirstRun();
                 piholeinfo.PiHoleServerName = serverNameTextBox.Text;
                 piholeinfo.PiHoleServerAuthKey = apiKeyTextBox.Text;
                 piholeinfo.PiHoleServerAddress = serverIPTextBox.Text;
 
                 piholesettings.Save_Settings(piholeinfo);
+                servercount.Increase_Servers();
                 firstrun.FirstRun = false;
 
 

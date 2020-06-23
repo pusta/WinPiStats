@@ -2,10 +2,9 @@
     x:Class="WinPiStats.Views.Settings.SettingsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WinPiStats.Views.Settings"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:WinPiStats.Controls.Settings"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource CMapUwpAcrylicBrush}" Loading="Page_Loading">
 
@@ -16,12 +15,12 @@
             <StackPanel>
                 <TextBlock x:Name="addModifyBlock" />
                 <TextBlock Text="Server Name:" />
-                <TextBox x:Name="serverNameBox" />
+                <TextBox x:Name="serverNameModBox" />
                 <TextBlock Text="Server Address:" />
-                <TextBox x:Name="serverAddressBox" />
+                <TextBox x:Name="serverAddressModBox" />
                 <TextBlock Text="Auth Key" />
-                <TextBox x:Name="serverAuthBox" />
-                <Button x:Name="saveButton" Content="Save" />
+                <TextBox x:Name="serverAuthModBox" />
+                <Button x:Name="saveButton" Content="Save" Click="saveButton_Click" />
                 <Button x:Name="cancelButton" Content="Cancel"  Click="cancelButton_Click"/>
 
 
@@ -42,7 +41,19 @@
                 <TextBlock x:Name="settingsPageTextBlock" Text="Settings" FontSize="30" Grid.Row="0" Grid.Column="0" Margin="20, 10, 0 ,0"/>
             
                 <TextBlock Text="Please select a PiHole server:" Margin="20,10,0,0"/>
-                <ListBox x:Name="piServerList" Margin="20, 10, 0 ,0" SelectionChanged="piServerList_SelectionChanged" />
+                
+                    <ListBox x:Name="piServerList" ItemsSource="{x:Bind ViewModel.ServerList, Mode=OneWay}" SelectionChanged="piServerList_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="local:PiHoleServerInfo">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel>
+                                <TextBlock Text="{x:Bind PiHoleServerName}" FontWeight="Bold"/>
+                                <TextBlock Text="{x:Bind PiHoleServerAddress}"  Margin="10,0,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                     <StackPanel Orientation="Horizontal">    
                 <Button x:Name="modifyButton" Content="Modify" IsEnabled="False"  Click="modifyButton_Click"/>
                     <Button x:Name="deleteButton" Content ="Delete" IsEnabled="False" Click="deleteButton_Click" />

@@ -11,7 +11,6 @@ namespace WinPiStats.Controls.Settings
     {
 
         LocalObjectStorageHelper helper = new LocalObjectStorageHelper();
-        ServerCount servercount;
         private string serverNumber;
 
         public PiHoleSettingsStore(string serverNum)
@@ -25,23 +24,7 @@ namespace WinPiStats.Controls.Settings
 
             helper.Save(serverNumber, serverInfo);
 
-            servercount = new ServerCount();
-
-            if (servercount.NumberOfServers == 0)
-            {
-                servercount.NumberOfServers = 1;
-
-            }
-            else
-            {
-                var numServers = servercount.NumberOfServers;
-                numServers += numServers;
-                servercount.NumberOfServers = numServers;
-
-
-
-
-            }
+           
 
         }
 

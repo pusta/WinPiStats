@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -13,6 +14,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WinPiStats.Controls.Settings;
+using WinPiStats.Models;
+
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -31,15 +34,20 @@ namespace WinPiStats.Views.Settings
         private bool addNew = false;
         List<string> serversList = new List<string>();
 
+        
 
         public SettingsPage()
         {
             this.InitializeComponent();
+            this.ViewModel = new ListViewModel();
+            
         }
+
+        public ListViewModel ViewModel { get; set; }
 
         private void Page_Loading(FrameworkElement sender, object args)
         {
-            Build_Server_List();
+            
             
 
         }
@@ -52,7 +60,7 @@ namespace WinPiStats.Views.Settings
             deleteButton.IsEnabled = true;
 
             //contentFrame.Navigate(typeof(ModifyServer), index.ToString());
-            //SettingSplitView.IsPaneOpen = true;
+            //SettingSplitView.IsPaneOpen = true;*/
 
 
         }
@@ -61,12 +69,14 @@ namespace WinPiStats.Views.Settings
         {
             piholesettingsstore = new PiHoleSettingsStore(index.ToString());
             piholeserverinfo = piholesettingsstore.Retrive_Settings();
-            serverNameBox.Text = piholeserverinfo.PiHoleServerName;
-            serverAddressBox.Text = piholeserverinfo.PiHoleServerAddress;
-            serverAuthBox.Text = piholeserverinfo.PiHoleServerAuthKey;
+            serverNameModBox.Text = piholeserverinfo.PiHoleServerName;
+            serverAddressModBox.Text = piholeserverinfo.PiHoleServerAddress;
+            serverAuthModBox.Text = piholeserverinfo.PiHoleServerAuthKey;
             addModifyBlock.Text = "Modify Server:";
             addNew = false;
             SettingSplitView.IsPaneOpen = true;
+           
+            
 
 
             
@@ -89,13 +99,15 @@ namespace WinPiStats.Views.Settings
 
         private void SettingSplitView_LostFocus(object sender, RoutedEventArgs e)
         {
+
+            // SettingSplitView.IsPaneOpen = false;
             
-           // SettingSplitView.IsPaneOpen = false;
-            
+
+
         }
 
 
-        private void Build_Server_List()
+        /*private void Build_Server_List()
         {
             for (var i = 1; i <= Convert.ToInt32(numPiHoleServers.NumberOfServers); i++)
             {
@@ -107,14 +119,33 @@ namespace WinPiStats.Views.Settings
 
             }
 
-            piServerList.ItemsSource = serversList;
-        }
+           // piServerList.ItemsSource = serversList;
+        } */
 
         private void addNewButton_Click(object sender, RoutedEventArgs e)
         {
             addNew = true;
             addModifyBlock.Text = "Add A New Server:";
             SettingSplitView.IsPaneOpen = true;
+        }
+
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!addNew)
+            {
+                var piholesettings = new PiHoleSettingsStore(index.ToString());
+                piholeserverinfo = new PiHoleServerInfo();
+                piholeserverinfo.PiHoleServerName = serverNameModBox.Text;
+                piholeserverinfo.PiHoleServerAuthKey = serverAuthModBox.Text;
+                piholeserverinfo.PiHoleServerAddress = serverAddressModBox.Text;
+
+                piholesettings.Save_Settings(piholeserverinfo);
+                SettingSplitView.IsPaneOpen = false;
+                
+
+
+
+            }
         }
     }
 }

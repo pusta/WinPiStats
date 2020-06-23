@@ -124,6 +124,8 @@
     <Compile Include="Controls\Settings\PiHoleSettingsStore.cs" />
     <Compile Include="Controls\Settings\Preferences.cs" />
     <Compile Include="Controls\Settings\ServerCount.cs" />
+    <Compile Include="Models\ListViewModel.cs" />
+    <Compile Include="Models\NavViewModel.cs" />
     <Compile Include="Views\Content\ContentPage.xaml.cs">
       <DependentUpon>ContentPage.xaml</DependentUpon>
     </Compile>

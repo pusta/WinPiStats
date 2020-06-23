@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 using WinPiStats.Views.Settings;
 using WinPiStats.Views.Content;
 using WinPiStats.Controls.Settings;
+using WinPiStats.Models;
 
 
 
@@ -27,6 +28,7 @@ namespace WinPiStats.Views.MainPage
         public MainPage()
         {
             this.InitializeComponent();
+            this.ViewModel = new NavViewModel();
            Render_Menu();
             //Load_Content();
             
@@ -34,7 +36,7 @@ namespace WinPiStats.Views.MainPage
         }
 
      
-
+        public NavViewModel ViewModel { get; set; }
  
 
         private void Render_Menu()
