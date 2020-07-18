@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using WinPiStats.Controls.Settings;
+using WinPiStats.Base;
+using WinPiStats.Views.Settings;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml;
 
 namespace WinPiStats.Models
 {
-    public class ListViewModel
+    public class ListViewModel : Observable
     {
 
         private ObservableCollection<PiHoleServerInfo> serverlist = new ObservableCollection<PiHoleServerInfo>();
         public ObservableCollection<PiHoleServerInfo> ServerList { get { return this.serverlist; } }
+        private PiHoleServerInfo _selectedserver;
+
+        
 
         public ListViewModel()
         {
@@ -24,6 +32,21 @@ namespace WinPiStats.Models
 
 
             
+        }
+
+        public PiHoleServerInfo SelectedServer
+        {
+            get { return _selectedserver; }
+
+            set
+            {
+                if (_selectedserver != value)
+                { 
+                _selectedserver = value;
+                    
+                OnPropertyChanged();
+                }
+            }
         }
 
 

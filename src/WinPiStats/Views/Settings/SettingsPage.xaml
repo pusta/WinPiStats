@@ -6,22 +6,24 @@
     xmlns:local="using:WinPiStats.Controls.Settings"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource CMapUwpAcrylicBrush}" Loading="Page_Loading">
+    Background="{ThemeResource CMapUwpAcrylicBrush}" Loading="Page_Loading" >
 
-    <SplitView x:Name="SettingSplitView" OpenPaneLength="300" DisplayMode="Inline" IsPaneOpen="False" PanePlacement="Right" LostFocus="SettingSplitView_LostFocus" PaneBackground="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"
- >
+    <SplitView x:Name="SettingSplitView" OpenPaneLength="300" DisplayMode="Inline" IsPaneOpen="False" PanePlacement="Right" LostFocus="SettingSplitView_LostFocus" PaneBackground="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}">
         <SplitView.Pane>
 
             <StackPanel>
-                <TextBlock x:Name="addModifyBlock" />
-                <TextBlock Text="Server Name:" />
-                <TextBox x:Name="serverNameModBox" />
-                <TextBlock Text="Server Address:" />
-                <TextBox x:Name="serverAddressModBox" />
-                <TextBlock Text="Auth Key" />
-                <TextBox x:Name="serverAuthModBox" />
-                <Button x:Name="saveButton" Content="Save" Click="saveButton_Click" />
-                <Button x:Name="cancelButton" Content="Cancel"  Click="cancelButton_Click"/>
+                
+                <TextBox Text="{x:Bind ViewModel.SelectedServer.PiHoleServerName, Mode=TwoWay}"
+                             Header="Server Name" Margin="10" />
+                <TextBox Text="{x:Bind ViewModel.SelectedServer.PiHoleServerAddress, Mode=TwoWay}"
+                             Header="Server Address" Margin="10" />
+                <TextBox Text="{x:Bind ViewModel.SelectedServer.PiHoleServerAuthKey, Mode=TwoWay}"
+                             Header="PiHole Auth Key" Margin="10"/>
+                <Button x:Name="closeButton" Content="Close" Click="closeButton_Click" />
+                
+
+                
+
 
 
             </StackPanel>
@@ -36,29 +38,39 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Vertical">
+                    <ColumnDefinition Width="300" />
+                </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Column="0">
                 <TextBlock x:Name="settingsPageTextBlock" Text="Settings" FontSize="30" Grid.Row="0" Grid.Column="0" Margin="20, 10, 0 ,0"/>
             
                 <TextBlock Text="Please select a PiHole server:" Margin="20,10,0,0"/>
-                
-                    <ListBox x:Name="piServerList" ItemsSource="{x:Bind ViewModel.ServerList, Mode=OneWay}" SelectionChanged="piServerList_SelectionChanged">
+
+                    <ListView x:Name="settingListView" ItemsSource="{x:Bind ViewModel.ServerList}"
+                          SelectedItem="{x:Bind ViewModel.SelectedServer,Mode=TwoWay}"
+                          DisplayMemberPath="PiHoleServerName" />
+
+                    <!-- <ListBox x:Name="piServerList" ItemsSource="{x:Bind ViewModel.ServerList, Mode=OneWay}" SelectionChanged="piServerList_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate x:DataType="local:PiHoleServerInfo">
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel>
-                                <TextBlock Text="{x:Bind PiHoleServerName}" FontWeight="Bold"/>
-                                <TextBlock Text="{x:Bind PiHoleServerAddress}"  Margin="10,0,0,0"/>
+                                <TextBlock Text="{x:Bind  PiHoleServerName }" FontWeight="Bold"/>
+                                <TextBlock Text="{x:Bind  PiHoleServerAddress}"  Margin="10,0,0,0"/>
                                     </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                        </ListBox.ItemTemplate> 
+                    </ListBox> -->
                     <StackPanel Orientation="Horizontal">    
-                <Button x:Name="modifyButton" Content="Modify" IsEnabled="False"  Click="modifyButton_Click"/>
+                <Button x:Name="modifyButton" Content="Modify" IsEnabled="true"  Click="modifyButton_Click"/>
                     <Button x:Name="deleteButton" Content ="Delete" IsEnabled="False" Click="deleteButton_Click" />
                     </StackPanel>
                     <Button x:Name="addNewButton" Content="Add Server" Click="addNewButton_Click" />
+                    <TextBlock x:Name="testBlock" />
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    
+
                 </StackPanel>
         </Grid>
         

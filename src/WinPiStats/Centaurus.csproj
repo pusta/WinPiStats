@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Base\Observable.cs" />
     <Compile Include="Controls\Settings\AppFirstRun.cs" />
     <Compile Include="Controls\Settings\PiHoleServerInfo.cs" />
     <Compile Include="Controls\Settings\PiHoleSettingsStore.cs" />

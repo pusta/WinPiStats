@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using WinPiStats.Controls.Settings;
 using WinPiStats.Models;
 
@@ -21,18 +9,17 @@ using WinPiStats.Models;
 
 namespace WinPiStats.Views.Settings
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+    
     public sealed partial class SettingsPage : Page
     {
 
-        private PiHoleSettingsStore piholesettingsstore;
-        private PiHoleServerInfo piholeserverinfo;
+        //private PiHoleSettingsStore piholesettingsstore;
+        private PiHoleServerInfo piholeserverinfo = new PiHoleServerInfo();
         private ServerCount numPiHoleServers = new ServerCount();
-        private int index;
+        //private int index;
         private bool addNew = false;
-        List<string> serversList = new List<string>();
+        public ListViewModel ViewModel { get; set; }
+        //List<string> serversList = new List<string>();
 
         
 
@@ -41,9 +28,10 @@ namespace WinPiStats.Views.Settings
             this.InitializeComponent();
             this.ViewModel = new ListViewModel();
             
+            
         }
 
-        public ListViewModel ViewModel { get; set; }
+        
 
         private void Page_Loading(FrameworkElement sender, object args)
         {
@@ -52,34 +40,21 @@ namespace WinPiStats.Views.Settings
 
         }
 
-        private void piServerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            index = piServerList.SelectedIndex + 1;
-            modifyButton.IsEnabled = true;
-            deleteButton.IsEnabled = true;
-
-            //contentFrame.Navigate(typeof(ModifyServer), index.ToString());
-            //SettingSplitView.IsPaneOpen = true;*/
-
-
-        }
+     
 
         private void modifyButton_Click(object sender, RoutedEventArgs e)
         {
-            piholesettingsstore = new PiHoleSettingsStore(index.ToString());
-            piholeserverinfo = piholesettingsstore.Retrive_Settings();
-            serverNameModBox.Text = piholeserverinfo.PiHoleServerName;
-            serverAddressModBox.Text = piholeserverinfo.PiHoleServerAddress;
-            serverAuthModBox.Text = piholeserverinfo.PiHoleServerAuthKey;
-            addModifyBlock.Text = "Modify Server:";
+            
+            if (settingListView.SelectedIndex != -1)
+            { 
             addNew = false;
             SettingSplitView.IsPaneOpen = true;
-           
-            
+            }
 
 
-            
+
+
+
 
         }
 
@@ -88,19 +63,13 @@ namespace WinPiStats.Views.Settings
 
         }
 
-        private void cancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-            SettingSplitView.IsPaneOpen = false;
-            
-
-        }
+  
 
 
         private void SettingSplitView_LostFocus(object sender, RoutedEventArgs e)
         {
 
-            // SettingSplitView.IsPaneOpen = false;
+             //SettingSplitView.IsPaneOpen = false;
             
 
 
@@ -124,28 +93,17 @@ namespace WinPiStats.Views.Settings
 
         private void addNewButton_Click(object sender, RoutedEventArgs e)
         {
-            addNew = true;
-            addModifyBlock.Text = "Add A New Server:";
-            SettingSplitView.IsPaneOpen = true;
+            
         }
 
-        private void saveButton_Click(object sender, RoutedEventArgs e)
+        private void closeButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!addNew)
-            {
-                var piholesettings = new PiHoleSettingsStore(index.ToString());
-                piholeserverinfo = new PiHoleServerInfo();
-                piholeserverinfo.PiHoleServerName = serverNameModBox.Text;
-                piholeserverinfo.PiHoleServerAuthKey = serverAuthModBox.Text;
-                piholeserverinfo.PiHoleServerAddress = serverAddressModBox.Text;
-
-                piholesettings.Save_Settings(piholeserverinfo);
-                SettingSplitView.IsPaneOpen = false;
-                
-
-
-
-            }
+            
+            SettingSplitView.IsPaneOpen = false;
         }
+
+        
+
+       
     }
 }
